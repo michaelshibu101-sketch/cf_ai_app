@@ -1,8 +1,8 @@
 import { getAgentByName, routeAgentRequest } from "agents";
-import { LearningCompanionAgent } from "./agent";
-import { LearningPlanWorkflow } from "./workflow";
+import { AiAppAgent } from "./agent";
+import { AiPlanWorkflow } from "./workflow";
 
-export { LearningCompanionAgent, LearningPlanWorkflow };
+export { AiAppAgent, AiPlanWorkflow };
 
 function readSessionId(request: Request): string {
   const sessionId = request.headers.get("x-session-id")?.trim();
@@ -28,13 +28,13 @@ export default {
     if (url.pathname === "/api/health") {
       return Response.json({
         ok: true,
-        app: "cf-ai-learning-companion"
+        app: "cf-ai-app"
       });
     }
 
     if (url.pathname.startsWith("/api/")) {
       try {
-        const agent = await getAgentByName(env.LEARNING_COMPANION, readSessionId(request), {
+        const agent = await getAgentByName(env.AI_APP, readSessionId(request), {
           locationHint: "enam"
         });
 

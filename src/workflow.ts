@@ -1,6 +1,6 @@
 import { AgentWorkflow } from "agents/workflows";
 import type { AgentWorkflowEvent, AgentWorkflowStep } from "agents/workflows";
-import type { LearningCompanionAgent } from "./agent";
+import type { AiAppAgent } from "./agent";
 
 const PLAN_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 
@@ -18,8 +18,8 @@ type WorkflowPayload = {
   latestPlan: string;
 };
 
-export class LearningPlanWorkflow extends AgentWorkflow<
-  LearningCompanionAgent,
+export class AiPlanWorkflow extends AgentWorkflow<
+  AiAppAgent,
   WorkflowPayload,
   { step?: string; status?: string; message?: string; percent?: number },
   Env

@@ -20,7 +20,7 @@ export type LearnerProfile = {
   studyWindow: string;
 };
 
-export type LearningCompanionState = {
+export type AiAppState = {
   profile: LearnerProfile;
   activeWorkflowId: string | null;
   workflowStatus: "idle" | "running" | "complete" | "error";
@@ -32,7 +32,7 @@ export type LearningCompanionState = {
 };
 
 export type BootstrapPayload = {
-  state: LearningCompanionState;
+  state: AiAppState;
   messages: ChatMessage[];
   plans: LearningPlan[];
 };

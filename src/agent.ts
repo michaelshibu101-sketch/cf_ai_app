@@ -1,8 +1,8 @@
 import { Agent } from "agents";
 import type {
+  AiAppState,
   BootstrapPayload,
   ChatMessage,
-  LearningCompanionState,
   LearningPlan,
   LearnerProfile
 } from "./types";
@@ -49,7 +49,7 @@ function createEmptyProfile(): LearnerProfile {
   };
 }
 
-function createInitialState(): LearningCompanionState {
+function createInitialState(): AiAppState {
   return {
     profile: createEmptyProfile(),
     activeWorkflowId: null,
@@ -113,7 +113,7 @@ function buildSystemPrompt(profile: LearnerProfile, latestPlan: string): string 
     : "Latest plan: none";
 
   return [
-    "You are Learning Companion.",
+    "You are the assistant for this Cloudflare AI app.",
     "Help one learner.",
     "Use short sentences.",
     "Use plain words.",
@@ -127,8 +127,8 @@ function buildSystemPrompt(profile: LearnerProfile, latestPlan: string): string 
   ].join("\n");
 }
 
-export class LearningCompanionAgent extends Agent<Env, LearningCompanionState> {
-  initialState: LearningCompanionState = createInitialState();
+export class AiAppAgent extends Agent<Env, AiAppState> {
+  initialState: AiAppState = createInitialState();
 
   #tablesReady = false;
 
@@ -232,7 +232,7 @@ export class LearningCompanionAgent extends Agent<Env, LearningCompanionState> {
     }
   }
 
-  updateStoredState(partial: Partial<LearningCompanionState>) {
+  updateStoredState(partial: Partial<AiAppState>) {
     this.setState({
       ...this.state,
       ...partial,
@@ -253,7 +253,7 @@ export class LearningCompanionAgent extends Agent<Env, LearningCompanionState> {
     };
   }
 
-  async updateProfile(nextProfile: Partial<LearnerProfile>): Promise<LearningCompanionState> {
+  async updateProfile(nextProfile: Partial<LearnerProfile>): Promise<AiAppState> {
     const profile = {
       subject: compactText(nextProfile.subject ?? this.state.profile.subject, 120),
       learningGoal: compactText(
@@ -332,7 +332,8 @@ export class LearningCompanionAgent extends Agent<Env, LearningCompanionState> {
       latestPlan: this.getLatestPlanText()
     };
 
-    const instanceId = await this.runWorkflow("LEARNING_PLAN_WORKFLOW", payload, {
+    const instanceId = await this.runWorkflow("AI_APP_WORKFLOW", payload, {
+      agentBinding: "AI_APP",
       metadata: { topic }
     });
 
@@ -379,7 +380,7 @@ export class LearningCompanionAgent extends Agent<Env, LearningCompanionState> {
     instanceId: string,
     progress: unknown
   ) {
-    if (workflowName !== "LEARNING_PLAN_WORKFLOW") {
+    if (workflowName !== "AI_APP_WORKFLOW") {
       return;
     }
 
@@ -396,7 +397,7 @@ export class LearningCompanionAgent extends Agent<Env, LearningCompanionState> {
     _instanceId: string,
     result?: unknown
   ) {
-    if (workflowName !== "LEARNING_PLAN_WORKFLOW") {
+    if (workflowName !== "AI_APP_WORKFLOW") {
       return;
     }
 
@@ -418,7 +419,7 @@ export class LearningCompanionAgent extends Agent<Env, LearningCompanionState> {
     _instanceId: string,
     error: string
   ) {
-    if (workflowName !== "LEARNING_PLAN_WORKFLOW") {
+    if (workflowName !== "AI_APP_WORKFLOW") {
       return;
     }
 

@@ -1,4 +1,4 @@
-const sessionStorageKey = "learning-companion-session-id";
+const sessionStorageKey = "cf-ai-app-session-id";
 const sessionId = getSessionId();
 
 const state = {
@@ -28,7 +28,7 @@ function getSessionId() {
     return saved;
   }
 
-  const next = `learning-${crypto.randomUUID()}`;
+  const next = `app-${crypto.randomUUID()}`;
   localStorage.setItem(sessionStorageKey, next);
   return next;
 }
