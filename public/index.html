@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Learning Companion</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero-card">
+        <div class="hero-copy-block">
+          <p class="eyebrow">Cloudflare Agents + Workers AI</p>
+          <h1>AI Learning Companion</h1>
+          <p class="hero-copy">
+            Cloudflare AI app for one learner. Your chat history stays in
+            session memory. A workflow builds a plan in the background.
+          </p>
+        </div>
+        <div class="hero-note">
+          <p class="note-label">What you get</p>
+          <p class="note-copy">
+            Ask for help. Save your goal. Start a workflow for a focused plan.
+          </p>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="sidebar">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Learning Setup</h2>
+                <p>Save your subject, goal, and time.</p>
+              </div>
+            </div>
+            <form id="profile-form" class="stack">
+              <label class="field">
+                <span>Subject</span>
+                <input id="subject" name="subject" placeholder="Biology, calculus, US history..." />
+              </label>
+              <label class="field">
+                <span>Learning goal</span>
+                <textarea
+                  id="learningGoal"
+                  name="learningGoal"
+                  rows="3"
+                  placeholder="What do you need to learn or finish?"
+                ></textarea>
+              </label>
+              <label class="field">
+                <span>Study window</span>
+                <input
+                  id="studyWindow"
+                  name="studyWindow"
+                  placeholder="45 minutes tonight. 2 hours this weekend."
+                />
+              </label>
+              <button class="button button-secondary" type="submit">Save details</button>
+            </form>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Learning Plan</h2>
+                <p>Run a workflow for a focused plan.</p>
+              </div>
+            </div>
+            <form id="plan-form" class="stack">
+              <label class="field">
+                <span>Plan topic</span>
+                <input id="planTopic" name="planTopic" placeholder="Midterm review. Chapter 6. Essay outline." />
+              </label>
+              <button class="button" type="submit">Build plan</button>
+            </form>
+            <div id="workflow-status" class="status-card">
+              <strong>Status:</strong>
+              <span id="workflow-status-text">Idle</span>
+            </div>
+            <div id="plan-list" class="plan-list"></div>
+          </article>
+        </aside>
+
+        <section class="chat-panel panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Chat</h2>
+              <p>Ask for an explanation, recap, quiz, or plan.</p>
+            </div>
+            <button id="reset-button" class="button button-ghost" type="button">Clear session</button>
+          </div>
+
+          <div class="chip-row">
+            <button class="chip" data-seed="Give me a short recap for this subject.">
+              Quick recap
+            </button>
+            <button class="chip" data-seed="Ask me 5 short quiz questions. Hold the answers until the end.">
+              Quiz me
+            </button>
+            <button class="chip" data-seed="What should I study first with 30 minutes left?">
+              Focus first
+            </button>
+          </div>
+
+          <div id="message-list" class="message-list" aria-live="polite"></div>
+
+          <form id="chat-form" class="chat-form">
+            <label class="sr-only" for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="3"
+              placeholder="Ask a question. Request a quiz. Ask for a plan."
+            ></textarea>
+            <div class="chat-actions">
+              <p id="helper-text" class="helper-text">This browser stores your session id.</p>
+              <button class="button" type="submit">Send</button>
+            </div>
+          </form>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

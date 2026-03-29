@@ -1,0 +1,360 @@
+:root {
+  --bg: #f7f1e3;
+  --card: rgba(255, 255, 255, 0.82);
+  --line: rgba(25, 36, 58, 0.12);
+  --text: #1d2742;
+  --accent: #f28f3b;
+  --accent-2: #247ba0;
+  --accent-3: #d1495b;
+  --muted: #51607f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Gill Sans", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(242, 143, 59, 0.24), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(36, 123, 160, 0.2), transparent 28%),
+    var(--bg);
+}
+
+.shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 18px 56px;
+}
+
+.hero-card {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1.3fr 0.8fr;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--card);
+  box-shadow: 0 16px 40px rgba(29, 39, 66, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  line-height: 0.94;
+}
+
+.hero-copy {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.hero-note {
+  align-self: end;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(29, 39, 66, 0.05);
+}
+
+.note-label {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+}
+
+.note-copy {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.workspace {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 320px 1fr;
+  margin-top: 22px;
+}
+
+.sidebar {
+  display: grid;
+  gap: 20px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 0 14px 34px rgba(29, 39, 66, 0.07);
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+}
+
+.panel-heading h2 {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+}
+
+.panel-heading p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.sidebar .panel {
+  padding: 20px;
+}
+
+.stack {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field span {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(29, 39, 66, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.button {
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), #ffb347);
+  color: #1d2742;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button-secondary {
+  background: linear-gradient(135deg, #bfe0ea, #86c7dd);
+}
+
+.button-ghost {
+  border: 1px solid rgba(29, 39, 66, 0.12);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.status-card {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(36, 123, 160, 0.1);
+  line-height: 1.5;
+}
+
+.plan-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.plan-card {
+  padding: 16px;
+  border: 1px solid rgba(29, 39, 66, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.plan-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.plan-heading h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.plan-heading span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.plan-body {
+  margin: 12px 0 0;
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 16px;
+  min-height: 720px;
+  padding: 20px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  border: 1px solid rgba(29, 39, 66, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.message-list {
+  overflow: auto;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-height: 0;
+  padding-right: 4px;
+}
+
+.message {
+  max-width: min(78%, 700px);
+  padding: 14px 16px;
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(29, 39, 66, 0.05);
+}
+
+.message-user {
+  justify-self: end;
+  border-bottom-right-radius: 8px;
+  background: rgba(36, 123, 160, 0.16);
+}
+
+.message-assistant {
+  justify-self: start;
+  border-bottom-left-radius: 8px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.message-meta {
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.message-body {
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.chat-form {
+  display: grid;
+  gap: 12px;
+}
+
+.chat-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.helper-text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.empty-state {
+  padding: 18px;
+  border: 1px dashed rgba(29, 39, 66, 0.2);
+  border-radius: 18px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .hero-card,
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-panel {
+    min-height: 640px;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding-inline: 14px;
+  }
+
+  .hero-card,
+  .sidebar .panel,
+  .chat-panel {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .message {
+    max-width: 100%;
+  }
+
+  .chat-actions,
+  .panel-heading,
+  .plan-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
