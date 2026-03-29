@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "cf-ai-learning-companion",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-03-29",
+  "compatibility_flags": ["nodejs_compat"],
+  "ai": {
+    "binding": "AI"
+  },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "LEARNING_COMPANION",
+        "class_name": "LearningCompanionAgent"
+      }
+    ]
+  },
+  "workflows": [
+    {
+      "binding": "LEARNING_PLAN_WORKFLOW",
+      "name": "learning-plan-workflow",
+      "class_name": "LearningPlanWorkflow"
+    }
+  ],
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["LearningCompanionAgent"]
+    }
+  ]
+}

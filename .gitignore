@@ -1,0 +1,9 @@
+node_modules/
+.wrangler/
+dist/
+.DS_Store
+npm-debug.log*
+.env
+.env.*
+.dev.vars
+coverage/
